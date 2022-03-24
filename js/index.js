@@ -83,7 +83,7 @@ const renderTodoHeader = () => {
 };
 
 const init = async () => {
-//   todoList = await fetchData("https://jsonplaceholder.typicode.com/todos");
+  //   todoList = await fetchData("https://jsonplaceholder.typicode.com/todos");
   todoList = await fetchData("js/data.json");
 
   renderTodoHeader();

@@ -9,6 +9,7 @@ Theme is based on Microsoft's Fluent UI.
 - [ ] Add Todo item
 - [ ] Add CSS Animation
 - [ ] ❔ Maybe create a `completed` section for all completed item.
+- [ ] ❔ Maybe using MVC module to re-implement.
 
 ## Feature completed
 
