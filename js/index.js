@@ -8,8 +8,8 @@ const COMPLETED_ITEM_CLASS = "todo-list-completed";
 
 let todoList = null;
 
-const fetchData = async () => {
-  let data = await fetch("js/data.json")
+const fetchData = async (path) => {
+  let data = await fetch(path)
     .then((res) => res.json())
     .then((json) => json);
 
@@ -17,37 +17,31 @@ const fetchData = async () => {
 };
 
 const render = (el, data) => {
-  if (typeof data === "string") el.append(data);
-  if (data instanceof Array) el.append(...data);
+  if (typeof data === "string") el.replaceChildren(data);
+  if (data instanceof Array) el.replaceChildren(...data);
 };
 
 const compareId = (id1, id2) => id1 * 1 === id2 * 1;
 
-const findListItem = (id) =>
-  todoList.find((listItem) => compareId(listItem.id, id));
-
 const toggleCompletion = (el) => {
   const { target } = el;
-  const {id } = target;
-  const toggledItem = findListItem(id);
-  toggledItem.completed = !toggledItem.completed;
+  const id = target.id || target.parentElement.id;
 
-  todoList = todoList.map((todoItem) =>
-    compareId(todoItem.id, toggledItem.id) ? toggledItem : todoItem
-  );
+  todoList = todoList.map((todoItem) => {
+    if (compareId(todoItem.id, id)) {
+      return { ...todoItem, completed: !todoItem.completed };
+    } else {
+      return todoItem;
+    }
+  });
 
   //   TODO - Persist data
-  if (toggledItem.completed) {
-    el.target.classList.add(COMPLETED_ITEM_CLASS);
-    el.target.children[0].checked = true;
-} else {
-    el.target.classList.remove(COMPLETED_ITEM_CLASS);
-    el.target.children[0].checked = false;
-  }
+
+  renderTodoList(todoList);
 };
 
 const generateTodoItem = (todoItem) => {
-  const { id, item, completed, deleted } = todoItem;
+  const { id, title, completed, deleted } = todoItem;
 
   if (deleted) return;
 
@@ -65,7 +59,7 @@ const generateTodoItem = (todoItem) => {
 
   const itemNode = document.createElement("span");
   itemNode.classList.add("todo-list__content__item");
-  itemNode.innerHTML = item;
+  itemNode.innerHTML = title;
 
   liNode.append(radioNode, itemNode);
 
@@ -89,7 +83,8 @@ const renderTodoHeader = () => {
 };
 
 const init = async () => {
-  todoList = await fetchData();
+//   todoList = await fetchData("https://jsonplaceholder.typicode.com/todos");
+  todoList = await fetchData("js/data.json");
 
   renderTodoHeader();
   renderTodoList(todoList);

@@ -1,23 +1,41 @@
 [
-  { "id": 1, "item": "Run a Marathon", "completed": false, "deleted": false },
-  { "id": 2, "item": "Go kayaking", "completed": false, "deleted": false },
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "Run a Marathon",
+    "completed": false,
+    "deleted": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "Go kayaking",
+    "completed": false,
+    "deleted": false
+  },
   {
     "id": 3,
-    "item": "See the hobbit huts in New Zealand",
+    "title": "See the hobbit huts in New Zealand",
     "completed": false,
     "deleted": false
   },
   {
     "id": 4,
-    "item": "Eat Belgian waffles in Belgium",
+    "title": "Eat Belgian waffles in Belgium",
     "completed": false,
     "deleted": false
   },
   {
     "id": 5,
-    "item": "See the hobbit huts in New Zealand",
+    "title": "See the hobbit huts in New Zealand",
     "completed": false,
     "deleted": false
   },
-  { "id": 6, "item": "Read 100 books", "completed": true, "deleted": false }
+  {
+    "userId": 1,
+    "id": 6,
+    "title": "Read 100 books",
+    "completed": true,
+    "deleted": false
+  }
 ]
