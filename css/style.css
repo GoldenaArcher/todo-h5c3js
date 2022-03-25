@@ -10,7 +10,7 @@
   --primary-darker: ;
   --primary-dark: #6264a7;
   --primary-standard: #8b8cc7;
-  --primary-light: ;
+  --primary-light: #bdbde6;
   --primary-lighter: #e2e2f6;
   --primary-lightest: #f4f4fc;
 
@@ -63,6 +63,17 @@ body {
 .todo-list__content__row > * {
   display: block;
 }
-.todo-list__content__row > input {
+.todo-list__content__row > *:first-child {
   margin-right: 1em;
+}
+.todo-list__content__item-inactive {
+  background-color: var(--primary-light);
+}
+.todo-list__content__row > input[type="text"] {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+}
+.todo-list__content__row > input[type="text"]:focus {
+  outline: none;
 }
